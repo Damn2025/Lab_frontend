@@ -395,6 +395,30 @@ textarea {
   font-weight: 700;
 }
 
+.details-icon-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.details-icon-button:hover {
+  background: rgba(82, 211, 200, 0.15);
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.details-icon-button svg {
+  width: 18px;
+  height: 18px;
+}
+
 .secondary-button {
   background: rgba(82, 211, 200, 0.14);
   color: #d8fffb;

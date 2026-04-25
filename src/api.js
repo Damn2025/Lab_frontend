@@ -20,7 +20,9 @@ async function parseResponse(response) {
 export async function fetchConfig() {
   try {
     const response = await fetch(`${API_BASE_URL}/api/config`);
-    return parseResponse(response);
+    const data = await parseResponse(response);
+    console.log("[Frontend] fetchConfig result:", data);
+    return data;
   } catch (error) {
     throw new Error(
       "Unable to reach the backend API. Start the backend server and check VITE_API_BASE_URL."
@@ -38,10 +40,22 @@ export async function fetchTableData(body) {
       body: JSON.stringify(body)
     });
 
-    return parseResponse(response);
+    const data = await parseResponse(response);
+    console.log("[Frontend] fetchTableData result:", data);
+    return data;
   } catch (error) {
     throw new Error(
       "Unable to reach the backend API. Start the backend server and check VITE_API_BASE_URL."
     );
+  }
+}
+
+export async function fetchLabTests(source, labId) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/labs/${encodeURIComponent(source)}/${encodeURIComponent(labId)}/tests`);
+    const data = await parseResponse(response);
+    return data.tests || [];
+  } catch (error) {
+    throw new Error("Unable to fetch lab tests.");
   }
 }

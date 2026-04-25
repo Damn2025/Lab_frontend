@@ -45,10 +45,10 @@ export const fallbackConfig = {
   columns: [
     "Sr. No",
     "Lab Name",
-    "Address",
     "State",
-    "Phone Number",
-    "Email"
+    "Discipline Name", // Added Discipline Name
+    "Group Name", // Added Group Name
+    "Details" // Placeholder for the icon column
   ],
   labTypeOptions,
   filterFields: {
@@ -57,10 +57,6 @@ export const fallbackConfig = {
       type: "dropdown",
       options: stateOptions
     },
-    city: {
-      label: "City",
-      type: "text"
-    },
     labName: {
       label: "Lab Name",
       type: "text"
@@ -68,17 +64,9 @@ export const fallbackConfig = {
     product: {
       label: "Product",
       type: "text"
-    },
-    test: {
-      label: "Test",
-      type: "text"
-    },
-    testMethod: {
-      label: "Method",
-      type: "text"
     }
   },
-  defaultLimit: 5,
+  defaultLimit: 10,
   defaultSort: {
     column: "Lab Name",
     ascending: true

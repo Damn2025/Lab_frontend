@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
+  import.meta.env.API_BASE_URL || "http://localhost:4000";
 
 async function parseResponse(response) {
   let payload = {};
@@ -25,7 +25,7 @@ export async function fetchConfig() {
     return data;
   } catch (error) {
     throw new Error(
-      "Unable to reach the backend API. Start the backend server and check VITE_API_BASE_URL."
+      "Unable to reach the backend API. Start the backend server and check Backend API configuration."
     );
   }
 }
@@ -45,7 +45,7 @@ export async function fetchTableData(body) {
     return data;
   } catch (error) {
     throw new Error(
-      "Unable to reach the backend API. Start the backend server and check VITE_API_BASE_URL."
+      "Unable to reach the backend API. Start the backend server and check Backend API configuration."
     );
   }
 }

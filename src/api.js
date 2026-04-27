@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  import.meta.env.API_BASE_URL || "http://localhost:4000";
+  import.meta.env.API_BASE_URL || "https://lab-backend-jze8.onrender.com";
 
 async function parseResponse(response) {
   let payload = {};

@@ -317,6 +317,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [configLoading, setConfigLoading] = useState(true);
+  const [hasLoadedResults, setHasLoadedResults] = useState(false);
 
   // New states for the detail card
   const [showDetailCard, setShowDetailCard] = useState(false);
@@ -395,6 +396,7 @@ function App() {
     setCount(0);
     setTotalPages(1);
     setError("");
+    setHasLoadedResults(false);
   }, [selectedLabType]);
 
   async function handleLoadData(targetPage = 1) {
@@ -416,8 +418,11 @@ function App() {
       setCount(payload.count);
       setPage(payload.page || targetPage);
       setTotalPages(payload.totalPages || 1);
+      setError(payload.message || "");
+      setHasLoadedResults(true);
     } catch (requestError) {
       setError(requestError.message);
+      setHasLoadedResults(true);
     } finally {
       setLoading(false);
     }
@@ -453,6 +458,7 @@ function App() {
     setCount(0);
     setTotalPages(1);
     setError("");
+    setHasLoadedResults(false);
   }
 
   // Handler for showing lab details
@@ -643,8 +649,12 @@ function App() {
             </table>
           ) : (
             <div className="empty-state">
-              <p>No data loaded yet.</p>
-              <span>Choose a lab type, add filters, and load the matching rows.</span>
+              <p>{hasLoadedResults ? "No matching labs found." : "No data loaded yet."}</p>
+              <span>
+                {hasLoadedResults
+                  ? error || "Try changing the selected lab type or filters."
+                  : "Choose a lab type, add filters, and load the matching rows."}
+              </span>
             </div>
           )}
         </div>
